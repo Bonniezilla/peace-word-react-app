@@ -12,6 +12,28 @@ module.exports = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      animation: {
+        'text-entry': 'text-entry 1s ease-in-out',
+        'text-entry-invert': 'text-entry-invert 1s ease-in-out',
+        'appear': 'appear 1s ease-in-out'
+      },
+      keyframes: {
+        'text-entry': {
+          '0%': { transform: 'translateX(-1em)', opacity: '0%' },
+          '100%': { transform: 'translateX(0)', opacity: '100%' }
+        },
+        'text-entry-invert': {
+          '0%': { transform: 'translateX(1em)', opacity: '0%' },
+          '100%': { transform: 'translateX(0)', opacity: '100%' }
+        },
+        'appear': {
+          '0%': { opacity: '0%' },
+          '100%': { opacity: '100%' },
+        },
+      },
+      gridTemplateColumns: {
+        'auto-fit-450': 'repeat(auto-fit, minmax(450px, 1fr))'
+      },
     },
   },
   plugins: [],
