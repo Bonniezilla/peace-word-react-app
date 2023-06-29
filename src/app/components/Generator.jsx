@@ -1,14 +1,28 @@
 'use client';
 
-import { useState, useRef } from "react";
+import { useEffect, useState } from "react";
 
 export default function Generator() {
     const [passwords, setPasswords] = useState([]);
-
-    const [passwordConfig, setPasswordConfig] = useState({});
+    const [passwordConfig, setPasswordConfig] = useState({ mount: 4, size: 8});
+    
     const handleChange = (event) => {
-        setPasswordConfig(event.target.value);
+        if (event.target.key = 'length-input') {
+            setPasswordConfig(config => ({
+                ...config,
+                size: event.target.value
+            }));
+        } else if (event.target.key = 'mount-input') {
+            setPasswordConfig(config => ({
+                ...config,
+                mount: event.target.value
+            }));
+        }
     }
+
+    useEffect(() => {
+        getPasswords(passwordConfig.mount, passwordConfig.length)
+    }, [passwordConfig])
 
     function createPassword(length) {
         function getRandomChar() {
@@ -26,9 +40,13 @@ export default function Generator() {
             for (let i = 1; i <= length; i++) {
                 password += getRandomChar();
             }
-            return password;
+        } else {
+            for (let i = 1; i <= 4; i++) {
+                password += getRandomChar();
+            }
         }
-
+        return password;
+        
     }
 
     function getPasswords(passwordsNumber = 4, passwordsLength = 8) {
@@ -52,14 +70,14 @@ export default function Generator() {
                 ">Never use weak <span className="text-emerald-500">passwords </span>again.</h2>
             </span>
             <div className="flex flex-nowrap">
-                <button onClick={() => getPasswords(passwordConfig)}
+                <button onClick={() => getPasswords(passwordConfig.mount, passwordConfig.length)}
                     className="text-white bg-emerald-500 p-2 border-2
                 border-solid border-white rounded-lg"
                 >New Password</button>
-                <input type="number" min={4} max={8} placeholder="Password mount"
-                    className="config-input" onChange={handleChange} />
-                <input type="number" min='8' max='35' placeholder="Password size"
-                    className="config-input" />
+                <input type="number" placeholder="Password mount"
+                    className="config-input" onChange={handleChange} key={'mount-input'}/>
+                <input type="number" placeholder="Password size"
+                    className="config-input" onChange={handleChange} key={'length-input'}/>
             </div>
             <div className="md:grid-cols-1 md:p-6 
             lg:grid-cols-2 
