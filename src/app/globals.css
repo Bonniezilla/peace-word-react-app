@@ -5,10 +5,22 @@
 .password-input {
     @apply text-emerald-500 bg-slate-800 rounded-md 
     border-zinc-500 border-2 text-center h-12 w-full animate-appear
-    cursor-pointer hover:text-white duration-500;
+    cursor-pointer hover:text-white duration-500 hover:tracking-widest;
 }
 
-.config-input {
-    @apply w-full indent-2 border-solid border-2 focus:border-white rounded-md
-    bg-slate-600 text-white appearance-none;
+.size-input {
+    -webkit-appearance: none;
+    @apply bg-transparent appearance-none cursor-pointer w-full focus:outline-none ;
+}
+
+.size-input::-moz-range-track {
+    @apply bg-emerald-500 h-2 rounded-xl;
+}
+
+.size-input::-webkit-slider-runnable-track {
+    @apply bg-emerald-500 h-2 rounded-xl;
+}
+
+.size-input::-moz-range-thumb {
+    @apply bg-slate-800 h-5 w-5 rounded-full;
 }
