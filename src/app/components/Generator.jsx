@@ -1,10 +1,12 @@
 'use client';
 
 import { useEffect, useState } from "react";
+import classNames from 'classnames';
 
 export default function Generator() {
     const [passwords, setPasswords] = useState([]);
     const [passwordConfig, setPasswordConfig] = useState({ size: 8 });
+    const [hovered, setHovered] = useState(false);
 
     const handleChange = (event) => {
         if (event.target.id === 'size-input') {
@@ -47,11 +49,24 @@ export default function Generator() {
             }
             setPasswords(passwordsArray);
         }
+    }
 
+    const copyPassword = (event) => {
+        alert('Copied to clipboard ' + event.target.value);
+        navigator.clipboard.writeText(event.target.value);
+    }
+
+    const handleHover = () => {
+        setHovered(true);
+    }
+
+    const handleLeave = () => {
+        setHovered(false);
     }
 
     return (
-        <section className="h-5/6 p-6 w-5/6 flex flex-col items-center justify-center
+        <section className="max-sm:w-full max-sm:p-0
+        h-5/6 p-6 w-5/6 flex flex-col items-center justify-center
         gap-4">
             <span className="font-bold text-center gap-2 flex flex-col justify-center 
             items-center">
@@ -60,7 +75,7 @@ export default function Generator() {
                 <h2 className="text-white text-3xl font-bold animate-text-entry-invert
                 ">Never use weak <span className="text-emerald-500">passwords </span>again.</h2>
             </span>
-            <div className="flex flex-nowrap items-center justify-center gap-6">
+            <div className="flex flex-nowrap max-sm:flex-col items-center justify-center gap-6">
                 <button onClick={() => getPasswords(passwordConfig.mount, passwordConfig.size)}
                     className="text-white bg-emerald-500 p-2 border-2
                 border-solid border-white rounded-lg"
@@ -70,18 +85,23 @@ export default function Generator() {
                         className="size-input" onChange={handleChange} id={'size-input'} />
                     <span className="text-white flex flex-nowrap font-bold
                     items-center justify-center">
-                    Size: <span className="text-emerald-500">{passwordConfig.size}</span>
+                        Size: <span className="text-emerald-500">{passwordConfig.size}</span>
                     </span>
                 </div>
             </div>
-            <div className="md:grid-cols-1 md:p-6 
-            lg:grid-cols-2 
-            grid justify-center items-center gap-6
+            <div className="max-sm:px-0 md:grid-cols-1 md:p-6 
+            lg:grid-cols-2
+            grid items-center gap-6
             w-full h-3/6">
                 {passwords.map(password => (
-                    <input
-                        className="password-input"
-                        type="text" value={password} readOnly />
+                    <input className="password-input"
+                        type="text"
+                        value={password}
+                        onClick={copyPassword}
+                        onMouseEnter={handleHover}
+                        onMouseLeave={handleLeave}
+                        title="Click to copy on clipboard"
+                        readOnly />
                 ))}
             </div>
         </section>

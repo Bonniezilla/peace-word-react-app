@@ -5,7 +5,8 @@
 .password-input {
     @apply text-emerald-500 bg-slate-800 rounded-md 
     border-zinc-500 border-2 text-center h-12 w-full animate-appear
-    cursor-pointer hover:text-white duration-500 hover:tracking-widest;
+    cursor-pointer hover:text-white duration-500 hover:tracking-widest 
+    max-md:text-sm;
 }
 
 .size-input {
