@@ -1,12 +1,10 @@
 'use client';
 
 import { useEffect, useState } from "react";
-import classNames from 'classnames';
 
-export default function Generator() {
+export default function Generator(props) {
     const [passwords, setPasswords] = useState([]);
     const [passwordConfig, setPasswordConfig] = useState({ size: 8 });
-    const [hovered, setHovered] = useState(false);
 
     const handleChange = (event) => {
         if (event.target.id === 'size-input') {
@@ -44,7 +42,7 @@ export default function Generator() {
         let passwordsArray = [];
 
         if (passwordsLength <= 35 && passwordsLength >= 5) {
-            for (let i = 1; i <= 4; i++) {
+            for (let i = 1; i <= props.passwordsNumber; i++) {
                 passwordsArray.push(createPassword(passwordsLength));
             }
             setPasswords(passwordsArray);
@@ -54,14 +52,6 @@ export default function Generator() {
     const copyPassword = (event) => {
         alert('Copied to clipboard ' + event.target.value);
         navigator.clipboard.writeText(event.target.value);
-    }
-
-    const handleHover = () => {
-        setHovered(true);
-    }
-
-    const handleLeave = () => {
-        setHovered(false);
     }
 
     return (
@@ -76,7 +66,7 @@ export default function Generator() {
                 ">Never use weak <span className="text-emerald-500">passwords </span>again.</h2>
             </span>
             <div className="flex flex-nowrap max-sm:flex-col items-center justify-center gap-6">
-                <button onClick={() => getPasswords(passwordConfig.mount, passwordConfig.size)}
+                <button onClick={() => getPasswords(passwordConfig.size)}
                     className="text-white bg-emerald-500 p-2 border-2
                 border-solid border-white rounded-lg"
                 >New Password</button>
@@ -89,17 +79,14 @@ export default function Generator() {
                     </span>
                 </div>
             </div>
-            <div className="max-sm:px-0 md:grid-cols-1 md:p-6 
-            lg:grid-cols-2
-            grid items-center gap-6
-            w-full h-3/6">
+            <div className={`max-sm:px-0 
+            md:p-6 grid items-center
+        gap-6 w-full h-3/6 ${props.passwordsNumber <= 1 ? "grid-cols-1" : "lg:grid-cols-2 md:grid-cols-1"}`}>
                 {passwords.map(password => (
                     <input className="password-input"
                         type="text"
                         value={password}
                         onClick={copyPassword}
-                        onMouseEnter={handleHover}
-                        onMouseLeave={handleLeave}
                         title="Click to copy on clipboard"
                         readOnly />
                 ))}
