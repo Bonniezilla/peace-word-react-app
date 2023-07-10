@@ -11,17 +11,18 @@
 
 .size-input {
     -webkit-appearance: none;
-    @apply bg-transparent appearance-none cursor-pointer w-full focus:outline-none ;
+    @apply bg-transparent appearance-none cursor-pointer w-full focus:outline-none 
+    max-sm:w-full flex items-center justify-center;
 }
 
 .size-input::-moz-range-track {
-    @apply bg-emerald-500 h-2 rounded-xl;
+    @apply bg-emerald-500 h-2 rounded-xl max-sm:h-4;
 }
 
 .size-input::-webkit-slider-runnable-track {
-    @apply bg-emerald-500 h-2 rounded-xl;
+    @apply bg-emerald-500 h-2 rounded-xl max-sm:h-4;
 }
 
 .size-input::-moz-range-thumb {
-    @apply bg-slate-800 h-5 w-5 rounded-full;
+    @apply bg-slate-800 h-5 w-5 rounded-full max-sm:h-10 max-sm:w-10;
 }
