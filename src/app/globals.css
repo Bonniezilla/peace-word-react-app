@@ -25,9 +25,15 @@
 }
 
 .size-input::-moz-range-thumb {
-    @apply bg-slate-800 h-8 w-5 rounded-full max-sm:h-10 max-sm:w-10;
+    @apply appearance-none border-emerald-300 border-2 
+    bg-slate-500 h-6 w-6 -mt-2 rounded-full max-md:h-10 max-md:w-10 max-md:-mt-3;
 }
 
 .size-input::-moz-range-track {
-    @apply bg-emerald-500 h-2 rounded max-sm:h-4;
+    @apply bg-emerald-500 h-2 rounded-xl max-sm:h-4;
+}
+
+.login-input {
+    @apply bg-slate-500 focus:bg-slate-900 border-2 border-slate-800 text-white
+    rounded-md indent-4 h-12 w-full;
 }

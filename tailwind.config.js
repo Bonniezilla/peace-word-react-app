@@ -9,13 +9,12 @@ module.exports = {
     extend: {
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       animation: {
         'text-entry': 'text-entry 1s ease-in-out',
         'text-entry-invert': 'text-entry-invert 1s ease-in-out',
-        'appear': 'appear 1s ease-in-out'
+        'appear': 'appear 1s ease-in-out',
       },
       keyframes: {
         'text-entry': {
