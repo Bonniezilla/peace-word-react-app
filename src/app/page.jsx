@@ -6,7 +6,7 @@ export default function Home() {
     <main className="flex h-screen w-screen flex-col items-center justify-center"
     >
       <Header />
-      <Generator passwordsNumber="4"/>   
+      <Generator passwordsNumber="8"/>
     </main>
   )
 }
