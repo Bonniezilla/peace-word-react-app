@@ -1,10 +1,12 @@
 import Generator from './components/Generator'; 
+import Header from './components/Header';
 
 export default function Home() {
   return (
-    <main className="flex h-full min-h-screen w-screen flex-col items-center justify-center
-    bg-slate-900">
-      <Generator passwordsNumber="6"/>   
+    <main className="flex h-screen w-screen flex-col items-center justify-center"
+    >
+      <Header />
+      <Generator passwordsNumber="8"/>
     </main>
   )
 }

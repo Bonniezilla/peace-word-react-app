@@ -53,8 +53,14 @@ export default function Generator(props) {
     }
 
     const copyPassword = (event) => {
-        alert('Copied to clipboard ' + event.target.value);
-        navigator.clipboard.writeText(event.target.value);
+        let password = event.target.value;
+        navigator.clipboard.writeText(password)
+            .then(() => {
+                alert('Copied to clipboard ' + event.target.value);
+            })
+            .catch((error) => {
+                alert(`Has occurred a error copying to the clipboard ${error}`)
+            });
     }
 
     return (

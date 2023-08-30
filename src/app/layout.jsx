@@ -1,4 +1,4 @@
-import './globals.css'
+import './globals.css';
 
 export const metadata = {
   title: 'PeaceWord',
@@ -8,7 +8,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="pt-br">
-      <body>{children}</body>
+      <body className='bg-slate-900'>{children}</body>
     </html>
   )
 }
