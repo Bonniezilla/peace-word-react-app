@@ -1,2 +1,11 @@
-import NextAuth from "next-auth/next";
-import GoogleProvider from "next-auth/providers/google"
+'use client';
+import { SessionProvider } from 'next-auth/react';
+
+const NextAuthProvider = ({ children }) => {
+    return (
+        <SessionProvider>{children}</SessionProvider>
+    )
+};
+
+export default NextAuthProvider;
+

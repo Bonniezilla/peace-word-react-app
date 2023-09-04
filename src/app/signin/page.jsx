@@ -1,3 +1,11 @@
+<<<<<<< HEAD
+export default function SigIn() {
+    return (
+        <div className="flex">
+
+        </div>
+    );
+=======
 import LoginBox from "../components/LoginBox"
 
 export default function Page() {
@@ -8,4 +16,5 @@ export default function Page() {
             </form>
         </div>
     )
+>>>>>>> 1f731e5e2e38fd3cce014b0be5b935ee97a6d9a7
 }
