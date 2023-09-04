@@ -1,14 +1,19 @@
 import './globals.css';
 
+import NextAuthProvider from './components/NextAuthProvider';
+
 export const metadata = {
   title: 'PeaceWord',
   description: 'Never use weak passwords again.',
 }
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ 
+  Component,
+  pageProps: { session, ...pageProps }
+ }) {
   return (
-    <html lang="pt-br">
-      <body className='bg-slate-900'>{children}</body>
-    </html>
-  )
+    <NextAuthProvider session={session}>
+      <Component {...pageProps} />
+    </NextAuthProvider>
+    )
 }
