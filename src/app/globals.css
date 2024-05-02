@@ -4,7 +4,7 @@
 
 .password-input {
     @apply text-emerald-500 bg-slate-800 rounded-md 
-    border-zinc-500 border-2 text-center h-12 w-full animate-appear
+    border-zinc-500 border-2 text-center h-full w-full animate-appear
     cursor-pointer hover:text-white duration-500 hover:tracking-widest 
     max-md:text-sm;
 }
@@ -16,7 +16,7 @@
 
 
 .size-input::-webkit-slider-runnable-track {
-    @apply bg-emerald-500 h-2 rounded-xl max-sm:h-4;
+    @apply bg-emerald-500 h-6 rounded-xl max-sm:h-4;
 }
 
 .size-input::-webkit-slider-thumb {
@@ -30,10 +30,5 @@
 }
 
 .size-input::-moz-range-track {
-    @apply bg-emerald-500 h-2 rounded-xl max-sm:h-4;
-}
-
-.login-input {
-    @apply bg-slate-800 focus:bg-slate-500 border-2 border-slate-900 text-white
-    rounded-md indent-4 h-12 w-full;
+    @apply bg-emerald-500 h-6 rounded-xl max-sm:h-4;
 }

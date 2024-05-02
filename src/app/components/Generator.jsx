@@ -64,18 +64,18 @@ export default function Generator(props) {
     }
 
     return (
-        <section className="max-sm:w-full max-sm:p-0
-        h-5/6 p-6 w-5/6 flex flex-col items-center justify-center
+        <section className="max-sm:w-full max-sm:px-0 max-sm:py-4
+        h-full p-12 w-5/6 flex flex-col items-center justify-center
         gap-4">
             <span className="font-bold text-center gap-2 flex flex-col justify-center 
             items-center">
                 <h1 className="text-5xl animate-text-entry text-white
                 "><span className="text-emerald-500">Peace</span> Word</h1>
                 <h2 className="text-white text-3xl font-bold animate-text-entry-invert
-                ">Never use weak <span className="text-emerald-500">passwords </span>again.</h2>
+                max-md:hidden">Never use weak <span className="text-emerald-500">passwords </span>again.</h2>
             </span>
-            <div className="flex flex-nowrap max-lg:flex-col justify-around items-center
-            max-lg:w-full max-lg:px-4 w-4/12 h-32">
+            <div className="flex flex-nowrap max-md:flex-col justify-around items-center
+            max-lg:w-full max-lg:px-4 max-md:h-1/6 max-sm:gap-4 w-4/12 h-3/6">
                 <button onClick={() => getPasswords(passwordConfig.size)}
                     className="text-white bg-emerald-500 p-2 border-2
                 border-solid border-white rounded-lg"
@@ -91,9 +91,9 @@ export default function Generator(props) {
                     </div>
                 </div>
             </div>
-            <div className={`max-sm:px-0 
-            md:p-6 grid items-center
-        gap-6 w-full h-3/6 ${passwordConfig.number <= 1 ? "grid-cols-1" : "lg:grid-cols-2 md:grid-cols-1"}`}>
+            <div className={`max-sm:px-0 max-md:h-full
+            max-sm:p-6 max-md:p-0 grid items-center
+        gap-6 w-full h-3/6 ${passwordConfig.number <= 1 ? "grid-cols-1" : "md:grid-cols-2 sm:grid-cols-1"}`}>
                 {passwords.map(password => (
                     <input className="password-input"
                         type="text"
