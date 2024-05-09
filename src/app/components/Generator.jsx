@@ -77,17 +77,19 @@ export default function Generator(props) {
             <div className="flex flex-nowrap max-md:flex-col justify-around items-center
             max-lg:w-full max-lg:px-4 max-md:h-1/6 max-sm:gap-4 w-4/12 h-3/6">
                 <button onClick={() => getPasswords(passwordConfig.size)}
-                    className="text-white bg-emerald-500 p-2 border-2
-                border-solid border-white rounded-lg"
+                className="text-white bg-emerald-500 p-2 border-2
+                border-solid border-white rounded-lg hover:bg-emerald-600 duration-300"
                 >New Password</button>
                 <div className="flex w-6/12 h-12 items-center justify-around">
-                    <div className="flex flex-col w-full h-full">
+                    <div className="flex flex-col w-full h-full gap-4">
                         <input type="range" min="5" max="35" defaultValue={passwordConfig.size}
                             className="size-input" onChange={handleChange} id={'size-input'} />
-                        <span className="text-white flex flex-nowrap font-bold
-                        items-center justify-center h-full w-full">
-                            Size: <span className="text-emerald-500">{passwordConfig.size}</span>
-                        </span>
+                        <div className="text-white flex flex-nowrap font-bold
+                        items-center justify-between h-full w-full tracking-widest">
+                            <h1 className={`${passwordConfig.size == 5 ? "text-white" : "text-emerald-500"} duration-500`}>5</h1>
+                            <h1>SIZE: <span className="text-emerald-500">{passwordConfig.size}</span></h1>
+                            <h1 className={`${passwordConfig.size == 35 ? "text-white" : "text-emerald-500"} duration-500`}>35</h1>
+                        </div>
                     </div>
                 </div>
             </div>
