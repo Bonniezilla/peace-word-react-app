@@ -1,3 +1,5 @@
+const plugin = require('tailwindcss/plugin');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -34,8 +36,11 @@ module.exports = {
         'auto-fit-450': 'repeat(auto-fit, minmax(450px, 1fr))'
       },
     },
-  },
+  }, 
   plugins: [
     require('autoprefixer'),
+    plugin(function ( { addVariant }) {
+      addVariant('slider-thumb', ['&::-webkit-slider-thumb', '&::slider-thumb'])
+    }),
   ],
 }
