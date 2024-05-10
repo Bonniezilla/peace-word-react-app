@@ -27,12 +27,12 @@
 
 .size-input::-webkit-slider-thumb {
     @apply appearance-none border-emerald-300 border-2 
-    bg-slate-600 h-6 w-6 rounded-full max-md:h-10 max-md:w-10 max-md:-mt-2 hover:h-8 hover:w-8 hover:rounded-t-none max-md:hover:w-10 max-md:hover:mt-0 duration-200;
+    bg-slate-600 h-6 w-6 rounded-full max-md:h-10 max-md:w-10 max-md:-mt-2 hover:h-8 hover:w-8 hover:rounded-t-none hover:-mt-1 max-md:hover:w-12 max-md:hover:h-12 max-md:hover:-mt-3 duration-200;
 }
 
 .size-input::-moz-range-thumb {
     @apply appearance-none border-emerald-300 border-2 
-    bg-slate-600 h-6 w-6 rounded-full max-md:h-10 max-md:w-10 max-md:-mt-3 hover:h-8 hover:w-8 hover:rounded-t-none duration-300;
+    bg-slate-600 h-6 w-6 rounded-full max-md:h-10 max-md:w-10 max-md:-mt-2 hover:h-8 hover:w-8 hover:rounded-t-none max-md:hover:w-10 max-md:hover:mt-0 duration-200;
 }
 
 .size-input::-moz-range-track {
