@@ -40,7 +40,7 @@ module.exports = {
   plugins: [
     require('autoprefixer'),
     plugin(function ( { addVariant }) {
-      addVariant('slider-thumb', ['&::-webkit-slider-thumb', '&::slider-thumb'])
+      addVariant('slider-thumb', ['&::-webkit-slider-thumb', '&::slider-thumb', '&::-moz-range-thumb'])
     }),
   ],
 }

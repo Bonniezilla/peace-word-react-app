@@ -4,8 +4,8 @@
 
 
 .generator-button {
-    @apply text-white bg-emerald-500 p-4 border-2 h-1/5 whitespace-nowrap
-    border-solid border-white rounded-lg hover:bg-emerald-600 duration-300 max-md:h-3/5;
+    @apply text-white bg-emerald-500 p-4 border-2 h-1/5 whitespace-nowrap flex justify-center
+    border-solid border-white rounded-lg hover:bg-emerald-600 duration-300 max-md:h-3/5 items-center;
 }
 
 .password-input {
