@@ -3,53 +3,86 @@
 import { useEffect, useState } from "react";
 
 export default function Generator(props) {
+    class PasswordConfig {
+
+        constructor(number, size, hasUpperCase, hasLowerCase, hasSpecialChars, hasNumbers) {
+            this.number = number || 6;
+            this.size = size || 8;
+            this.hasUpperCase = hasUpperCase || true;
+            this.hasLowerCase = hasLowerCase || true;
+            this.hasSpecialChars = hasSpecialChars || false;
+            this.hasNumbers = hasNumbers || true;
+            this.getCharsArray = this.getCharsArray.bind(this);
+
+            this.charsPatterns = {
+                upperCase: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+                lowerCase: 'abcdefghijklmnopqrstuvwxyz',
+                specialChars: '!@#$%^&*()-_=+\|[]{};:/?.',
+                numbers: '0123456789',
+            }
+        }
+        
+        getCharsArray() {
+            let charsArray = [];
+
+            if(this.hasUpperCase) {
+                charsArray.push(this.charsPatterns.upperCase);
+            }
+
+            if(this.hasLowerCase) {
+                charsArray.push(this.charsPatterns.lowerCase);
+            }
+
+            if(this.hasSpecialChars) {
+                charsArray.push(this.charsPatterns.specialChars);
+            }
+
+            if(this.hasNumbers) {
+                charsArray.push(this.charsPatterns.numbers);
+            }
+
+            let charsString = charsArray.join('');
+
+            return charsString;
+        }
+    }
+
     const [passwords, setPasswords] = useState([]);
-    const [passwordConfig, setPasswordConfig] = useState({
-        number: props.passwordsNumber >= 1 ? props.passwordsNumber : 4
-        , size: 8
-    });
+    const [passwordConfig, setPasswordConfig] = useState(new PasswordConfig(props.passwordsNumber));
 
     const handleChange = (event) => {
         if (event.target.id === 'size-input') {
-            setPasswordConfig(config => ({
-                ...config,
-                size: parseInt(event.target.value)
+            setPasswordConfig(prevState => ({
+                ...prevState,
+                size: event.target.value,
             }));
         }
     }
 
     useEffect(() => {
-        getPasswords(passwordConfig.size);
+        setPasswords(createPasswords(passwordConfig));
     }, [passwordConfig])
 
-    function createPassword(length) {
-        function getRandomChar() {
+    function createPasswords(passwordConfig) {
+        let passwordsArray = [];
+
+        function getRandomChar(allChars = passwordConfig.getCharsArray()) {
             let randomChar = allChars[Math.floor(Math.random() * allChars.length)];
-            if (Boolean(Math.random() < 0.5)) {
-                randomChar = randomChar.toUpperCase();
-            }
             return randomChar;
         }
 
-        const allChars = '!"#$%&\'()*+,-./0123456789:;<=>?@[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~';
-        let password = '';
-
-        for (let i = 1; i <= length; i++) {
-            password += getRandomChar();
-        }
-        return password;
-
-    }
-
-    function getPasswords(passwordsLength = 8) {
-        let passwordsArray = [];
-
-        if (passwordsLength <= 35 && passwordsLength >= 5) {
+        if (passwordConfig.size >= 5 && passwordConfig.size <= 35) {
+            let password = '';
             for (let i = 1; i <= passwordConfig.number; i++) {
-                passwordsArray.push(createPassword(passwordsLength));
+                for (let i = 1; i <= passwordConfig.size; i++) {
+                    password += getRandomChar();
+                }
+                passwordsArray.push(password);
+                password = '';
             }
-            setPasswords(passwordsArray);
         }
+
+        return passwordsArray;
     }
 
     const copyPassword = (event) => {
@@ -76,13 +109,14 @@ export default function Generator(props) {
             </span>
             <div className="flex flex-nowrap max-md:flex-col justify-around items-center
             max-lg:w-full max-lg:px-4 max-md:h-1/6 max-sm:gap-4 w-4/12 h-3/6">
-                <button onClick={() => getPasswords(passwordConfig.size)}
-                className="generator-button"
+                <button onClick={() => setPasswords(createPasswords(passwordConfig))}
+                    className="generator-button"
                 >New Password</button>
                 <div className="flex w-6/12 h-12 items-center justify-around">
                     <div className="flex flex-col w-full h-full gap-4">
                         <input type="range" min="5" max="35" defaultValue={passwordConfig.size}
-                            className={`size-input ${passwordConfig.size == 5 ? "hover:slider-thumb:rounded-full" : ""} ${passwordConfig.size == 35 ? "hover:slider-thumb:rounded-full" : ""}`} onChange={handleChange} id={'size-input'} />
+                            className={`size-input ${passwordConfig.size == 5 ? "hover:slider-thumb:rounded-full" : ""} ${passwordConfig.size == 35 ? "hover:slider-thumb:rounded-full" : ""}`} 
+                            onChange={handleChange} id={'size-input'} />
                         <div className="text-white flex flex-nowrap font-bold
                         items-center justify-between h-full w-full tracking-widest">
                             <h1 className={`${passwordConfig.size == 5 ? "text-white" : "text-emerald-500"} duration-500`}>5</h1>
