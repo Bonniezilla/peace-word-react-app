@@ -1,6 +1,7 @@
+import React from 'react';
 import Generator from './components/Generator';
 
-export default function Home() {
+const Home: React.FC = () => {
   return (
     <main className="flex h-screen w-screen flex-col items-center justify-center"
     >
@@ -8,3 +9,5 @@ export default function Home() {
     </main>
   )
 }
+
+export default Home;
