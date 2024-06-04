@@ -38,6 +38,8 @@ const Generator: React.FC<GeneratorProps> = ({ passwordsNumber }) => {
 
     const [config, setConfig] = useState<PasswordConfig>(initialConfig);
 
+    const [showMenu, setShowMenu] = useState(false);
+
     const getCharsArray = () => {
         const charsPatterns = {
             upperCase: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
@@ -133,15 +135,45 @@ const Generator: React.FC<GeneratorProps> = ({ passwordsNumber }) => {
                 <h2 className="text-white text-3xl font-bold animate-text-entry-invert
                 max-md:hidden">Never use weak <span className="text-emerald-500">passwords </span>again.</h2>
             </span>
+            <div className="flex self-end relative">
+                <button onClick={() => setShowMenu(!showMenu)}>
+                    <img src="/config.png"
+                        className="w-8 hover:animate-spin-one hover:brightness-50 duration-300"
+                    />
+                </button>
+                <div className={`${showMenu ? 'block' : 'hidden' } gap-4 bg-slate-800 h-46 border-solid border-zinc-500 border-4
+                rounded-md self-end p-4 absolute right-8 top-8`}>
+                    <div className="flex flex-col">
+                        <h1 className="text-white">Letter case: </h1>
+                        <select name="" id="" className="h-6">
+                            <option value="1">All</option>
+                            <option value="2">Only Uppercase</option>
+                            <option value="3">Only Lowercase</option>
+                        </select>
+                    </div>
+                    <div className="flex flex-col">
+                        <h1 className="text-white">Special chars: </h1>
+                        <label className="flex flex-col relative w-12 h-6 text-white">
+                            <input type="checkbox" />
+                            <span className="slider"></span>
+                        </label>
+                    </div>
+                    <div className="flex flex-col">
+                        <h1 className="text-white">Numbers: </h1>
+                        <label className="flex flex-col relative w-12 h-6 text-white">
+                            <input type="checkbox" />
+                            <span className="slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
             <div className="flex flex-nowrap max-md:flex-col justify-around items-center
             max-lg:w-full max-lg:px-4 max-md:h-1/6 max-sm:gap-4 w-4/12 h-3/6">
                 <button onClick={() => setPasswords(createPasswords(config))}
                     className="generator-button"
                 >New Password</button>
                 <div className="flex w-6/12 h-12 items-center justify-around">
-                    <button className="h-12 w-52 rounded-lg bg-emerald-500 border-solid border-white border-2 hover:bg-emerald-700 duration-300"
-                        onClick={() => updateConfig()}
-                    >Config</button>
                     <div className="flex flex-col w-full h-full gap-4">
                         <input type="range" min="5" max="35" value={config.size}
                             className={`size-input ${config.size == 5 ? "hover:slider-thumb:rounded-full" : ""} ${config.size == 35 ? "hover:slider-thumb:rounded-full" : ""}`}

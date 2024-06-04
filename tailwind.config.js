@@ -1,4 +1,5 @@
 const plugin = require('tailwindcss/plugin');
+const { transform } = require('typescript');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -17,6 +18,7 @@ module.exports = {
         'text-entry': 'text-entry 1s ease-in-out',
         'text-entry-invert': 'text-entry-invert 1s ease-in-out',
         'appear': 'appear 1s ease-in-out',
+        'spin-one': 'spin 0.5s ease-in-out'
       },
       keyframes: {
         'text-entry': {
