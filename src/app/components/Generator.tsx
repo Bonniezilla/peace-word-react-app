@@ -229,7 +229,7 @@ const Generator: React.FC<GeneratorProps> = ({ passwordsNumber }) => {
                     <input className="password-input"
                         type="text"
                         value={password}
-                        onClick={() => copyPassword}
+                        onClick={copyPassword}
                         title="Click to copy on clipboard"
                         readOnly />
                 ))}
