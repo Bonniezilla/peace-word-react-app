@@ -199,7 +199,8 @@ const Generator: React.FC<GeneratorProps> = ({ passwordsNumber }) => {
                         className="flex justify-center items-center text-white p-2 px-4 
                     bg-emerald-500 border-solid border-white border-2 rounded-xl self-start
                     hover:bg-emerald-600 duration-300"
-                        type="submit" />
+                        type="submit" 
+                        value="Apply"/>
                 </form>
             </div>
 
