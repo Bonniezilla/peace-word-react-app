@@ -1,6 +1,6 @@
 'use client';
 
-import { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import { ChangeEvent, FormEvent, MouseEventHandler, useEffect, useState } from "react";
 
 interface GeneratorProps {
     passwordsNumber: number;
@@ -39,6 +39,8 @@ const Generator: React.FC<GeneratorProps> = ({ passwordsNumber }) => {
     const [config, setConfig] = useState<PasswordConfig>(initialConfig);
 
     const [showMenu, setShowMenu] = useState(false);
+
+    const [checked, setChecked] = useState(true);
 
     const getCharsArray = () => {
         const charsPatterns = {
@@ -184,19 +186,19 @@ const Generator: React.FC<GeneratorProps> = ({ passwordsNumber }) => {
                     <div className="flex flex-col">
                         <h1 className="text-white">Special chars: </h1>
                         <label className="flex flex-col relative w-12 h-6 text-white">
-                            <input type="checkbox" id="chars-select" />
+                            <input type="checkbox" id="chars-select"/>
                             <span className="slider"></span>
                         </label>
                     </div>
                     <div className="flex flex-col">
                         <h1 className="text-white">Numbers: </h1>
                         <label className="flex flex-col relative w-12 h-6 text-white">
-                            <input type="checkbox" id="numbers-select" />
+                            <input type="checkbox" id="numbers-select" defaultChecked={checked}
+                            onChange={() => setChecked((state) => !state)}/>
                             <span className="slider"></span>
-                        </label>
+                        </label> 
                     </div>
-                    <input
-                        className="flex justify-center items-center text-white p-2 px-4 
+                    <input className="flex justify-center items-center text-white p-2 px-4 
                     bg-emerald-500 border-solid border-white border-2 rounded-xl self-start
                     hover:bg-emerald-600 duration-300"
                         type="submit" 
