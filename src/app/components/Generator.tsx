@@ -33,19 +33,19 @@ const Generator: React.FC<GeneratorProps> = ({ passwordsNumber, ref }) => {
             this.hasNumbers = hasNumbers || true;
         }
     }
-    
+
     const [passwords, setPasswords] = useState([]);
-    
+
     const initialConfig = new PasswordConfig(passwordsNumber);
 
     const [config, setConfig] = useState<PasswordConfig>(initialConfig);
-    
+
     const [showMenu, setShowMenu] = useState(false);
-    
+
     const [checked, setChecked] = useState(true);
-    
+
     const configRef = useOutsideClick((target) => {
-        if(target.id == "config-button" && configRef.current.classList.contains('hidden')) {
+        if (target.id == "config-button" && configRef.current.classList.contains('hidden')) {
             setShowMenu(true);
         } else {
             setShowMenu(false);
@@ -93,8 +93,8 @@ const Generator: React.FC<GeneratorProps> = ({ passwordsNumber, ref }) => {
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        
-        
+
+
         // this part of code check and prepare the form values to send in update config parameters
         let caseOptions = event.target[0].value;
         let specialChars = event.target[1].checked == true ? true : false
@@ -125,7 +125,7 @@ const Generator: React.FC<GeneratorProps> = ({ passwordsNumber, ref }) => {
             hasNumbers: hasNumbers
         }
 
-        setConfig({...config, ...newConfig});
+        setConfig({ ...config, ...newConfig });
     }
 
     useEffect(() => {
@@ -183,38 +183,40 @@ const Generator: React.FC<GeneratorProps> = ({ passwordsNumber, ref }) => {
                         className="w-8 hover:animate-spin-one hover:brightness-50 duration-300"
                     />
                 </button>
-                <form onSubmit={handleSubmit} ref={configRef}
-                    className={`${showMenu ? 'flex' : 'hidden'} flex-col gap-4 bg-slate-800 h-46 border-solid border-zinc-500 border-4
+                <div ref={configRef} className={`${showMenu ? "block" : "hidden"}`}>
+                    <form onSubmit={handleSubmit}
+                        className={`flex flex-col gap-4 bg-slate-800 h-46 border-solid border-zinc-500 border-4
                     rounded-md self-end p-4 absolute right-8 top-8`}>
-                    <div className="flex flex-col">
-                        <h1 className="text-white">Letter case: </h1>
-                        <select id="case-select" className="h-6">
-                            <option value="1">All</option>
-                            <option value="2">Only Uppercase</option>
-                            <option value="3">Only Lowercase</option>
-                        </select>
-                    </div>
-                    <div className="flex flex-col">
-                        <h1 className="text-white">Special chars: </h1>
-                        <label className="flex flex-col relative w-12 h-6 text-white">
-                            <input type="checkbox" id="chars-select"/>
-                            <span className="slider"></span>
-                        </label>
-                    </div>
-                    <div className="flex flex-col">
-                        <h1 className="text-white">Numbers: </h1>
-                        <label className="flex flex-col relative w-12 h-6 text-white">
-                            <input type="checkbox" id="numbers-select" defaultChecked={checked}
-                            onChange={() => setChecked((state) => !state)}/>
-                            <span className="slider"></span>
-                        </label> 
-                    </div>
-                    <input className="flex justify-center items-center text-white p-2 px-4 
+                        <div className="flex flex-col">
+                            <h1 className="text-white">Letter case: </h1>
+                            <select id="case-select" className="h-6">
+                                <option value="1">All</option>
+                                <option value="2">Only Uppercase</option>
+                                <option value="3">Only Lowercase</option>
+                            </select>
+                        </div>
+                        <div className="flex flex-col">
+                            <h1 className="text-white">Special chars: </h1>
+                            <label className="flex flex-col relative w-12 h-6 text-white">
+                                <input type="checkbox" id="chars-select" />
+                                <span className="slider"></span>
+                            </label>
+                        </div>
+                        <div className="flex flex-col">
+                            <h1 className="text-white">Numbers: </h1>
+                            <label className="flex flex-col relative w-12 h-6 text-white">
+                                <input type="checkbox" id="numbers-select" defaultChecked={checked}
+                                    onChange={() => setChecked((state) => !state)} />
+                                <span className="slider"></span>
+                            </label>
+                        </div>
+                        <input className="flex justify-center items-center text-white p-2 px-4 
                     bg-emerald-500 border-solid border-white border-2 rounded-xl self-start
                     hover:bg-emerald-600 duration-300"
-                        type="submit" 
-                        value="Apply"/>
-                </form>
+                            type="submit"
+                            value="Apply" />
+                    </form>
+                </div>
             </div>
 
             <div className="flex flex-nowrap max-md:flex-col justify-around items-center
