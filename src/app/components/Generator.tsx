@@ -5,10 +5,9 @@ import { useOutsideClick } from "../useOutsideClick";
 
 interface GeneratorProps {
     passwordsNumber: number;
-    ref
 }
 
-const Generator: React.FC<GeneratorProps> = ({ passwordsNumber, ref }) => {
+const Generator: React.FC<GeneratorProps> = ({ passwordsNumber }) => {
     class PasswordConfig {
         number: number;
         size: number;
@@ -183,7 +182,7 @@ const Generator: React.FC<GeneratorProps> = ({ passwordsNumber, ref }) => {
                         className="w-8 hover:animate-spin-one hover:brightness-50 duration-300"
                     />
                 </button>
-                <div ref={configRef} className={`${showMenu ? "block" : "hidden"}`}>
+                <div ref={configRef} className={`${showMenu ? " block" : "hidden"}`}>
                     <form onSubmit={handleSubmit}
                         className={`flex flex-col gap-4 bg-slate-800 h-46 border-solid border-zinc-500 border-4
                     rounded-md self-end p-4 absolute right-8 top-8`}>
