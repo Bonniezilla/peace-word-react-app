@@ -1,12 +1,14 @@
 'use client';
 
-import { ChangeEvent, FormEvent, MouseEventHandler, useEffect, useState } from "react";
+import { ChangeEvent, FormEvent, Ref, useEffect, useRef, useState } from "react";
+import { useOutsideClick } from "../useOutsideClick";
 
 interface GeneratorProps {
     passwordsNumber: number;
+    ref
 }
 
-const Generator: React.FC<GeneratorProps> = ({ passwordsNumber }) => {
+const Generator: React.FC<GeneratorProps> = ({ passwordsNumber, ref }) => {
     class PasswordConfig {
         number: number;
         size: number;
@@ -31,16 +33,24 @@ const Generator: React.FC<GeneratorProps> = ({ passwordsNumber }) => {
             this.hasNumbers = hasNumbers || true;
         }
     }
-
+    
     const [passwords, setPasswords] = useState([]);
-
+    
     const initialConfig = new PasswordConfig(passwordsNumber);
 
     const [config, setConfig] = useState<PasswordConfig>(initialConfig);
-
+    
     const [showMenu, setShowMenu] = useState(false);
-
+    
     const [checked, setChecked] = useState(true);
+    
+    const configRef = useOutsideClick((target) => {
+        if(target.id == "config-button" && configRef.current.classList.contains('hidden')) {
+            setShowMenu(true);
+        } else {
+            setShowMenu(false);
+        }
+    });
 
     const getCharsArray = () => {
         const charsPatterns = {
@@ -120,7 +130,7 @@ const Generator: React.FC<GeneratorProps> = ({ passwordsNumber }) => {
 
     useEffect(() => {
         setPasswords(createPasswords(config));
-    }, [config])
+    }, [config]);
 
     function createPasswords(passwordConfig) {
         let passwordsArray = [];
@@ -155,6 +165,7 @@ const Generator: React.FC<GeneratorProps> = ({ passwordsNumber }) => {
             });
     }
 
+
     return (
         <section className="max-sm:w-full max-sm:px-0 max-sm:py-4
         h-full p-12 w-5/6 flex flex-col items-center justify-center
@@ -167,12 +178,12 @@ const Generator: React.FC<GeneratorProps> = ({ passwordsNumber }) => {
                 max-md:hidden">Never use weak <span className="text-emerald-500">passwords </span>again.</h2>
             </span>
             <div className="flex self-end relative">
-                <button onClick={() => setShowMenu(!showMenu)}>
-                    <img src="/config.png"
+                <button>
+                    <img src="/config.png" id="config-button"
                         className="w-8 hover:animate-spin-one hover:brightness-50 duration-300"
                     />
                 </button>
-                <form onSubmit={handleSubmit}
+                <form onSubmit={handleSubmit} ref={configRef}
                     className={`${showMenu ? 'flex' : 'hidden'} flex-col gap-4 bg-slate-800 h-46 border-solid border-zinc-500 border-4
                     rounded-md self-end p-4 absolute right-8 top-8`}>
                     <div className="flex flex-col">
