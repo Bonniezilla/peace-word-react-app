@@ -1,6 +1,6 @@
 'use client';
 
-import { ChangeEvent, FormEvent, Ref, useEffect, useRef, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { useOutsideClick } from "../useOutsideClick";
 
 interface GeneratorProps {
