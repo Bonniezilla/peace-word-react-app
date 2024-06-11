@@ -12,11 +12,11 @@ export const useOutsideClick = (callback: (target) => void) => {
         };
 
         document.addEventListener('mouseup', handleClickOutside);
-        document.addEventListener('touchend', handleClickOutside);
+        document.addEventListener('touchstart', handleClickOutside);
         
         return () => {
             document.removeEventListener('mouseup', handleClickOutside);
-            document.removeEventListener('touchend', handleClickOutside);
+            document.removeEventListener('touchstart', handleClickOutside);
         };
     }, [callback]);
 
