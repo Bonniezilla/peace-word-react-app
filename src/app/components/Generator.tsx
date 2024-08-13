@@ -4,7 +4,7 @@ import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { useOutsideClick } from "../useOutsideClick";
 
 interface GeneratorProps {
-    passwordsNumber: number;
+    passwordsNumber?: number;
 }
 
 const Generator: React.FC<GeneratorProps> = ({ passwordsNumber }) => {
@@ -240,8 +240,10 @@ const Generator: React.FC<GeneratorProps> = ({ passwordsNumber }) => {
             <div className={`max-sm:px-0 max-md:h-full
             max-sm:p-6 max-md:p-0 grid items-center
         gap-6 w-full h-3/6 ${config.number < 2 ? "grid-cols-1" : "md:grid-cols-2 sm:grid-cols-1"}`}>
-                {passwords.map(password => (
+                {passwords.map((password, index) => (
                     <input className="password-input"
+                        data-testid={index}
+                        key={index}
                         type="text"
                         value={password}
                         onClick={copyPassword}
