@@ -21,11 +21,11 @@
 }
 
 
-.size-input::-webkit-slider-runnable-track, .size-input::-moz-range-track, .size-input::-ms-track {
+.size-input::-webkit-slider-runnable-track .size-input::-moz-range-track .size-input::-ms-track {
     @apply bg-emerald-500 h-6 rounded-xl max-sm:h-4 flex items-center justify-center duration-300;
 }
 
-.size-input::-webkit-slider-thumb, .size-input::-moz-range-thumb, .size-input::-ms-thumb {
+.size-input::-webkit-slider-thumb .size-input::-moz-range-thumb .size-input::-ms-thumb {
     @apply appearance-none border-emerald-300 border-2 
     bg-slate-600 h-6 w-6 rounded-full max-md:h-10 max-md:w-10 max-md:-mt-2 hover:h-8 hover:w-8 hover:rounded-t-none hover:-mt-1 max-md:hover:w-12 max-md:hover:h-12 max-md:hover:-mt-3 duration-200;
 }
