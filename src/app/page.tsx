@@ -1,13 +1,12 @@
 import React from 'react';
-import Generator from './components/Generator';
+import Navbar from './components/Navbar';
 
-const GeneratorPage: React.FC = () => {
+const Home: React.FC = () => {
   return (
-    <main className="flex h-screen w-screen flex-col items-center justify-center"
-    >
-      <Generator passwordsNumber={6}/>
+    <main className="home-page">
+        <Navbar />
     </main>
   )
 }
 
-export default GeneratorPage;
+export default Home;
