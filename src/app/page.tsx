@@ -1,7 +1,7 @@
 import React from 'react';
 import Generator from './components/Generator';
 
-const Home: React.FC = () => {
+const GeneratorPage: React.FC = () => {
   return (
     <main className="flex h-screen w-screen flex-col items-center justify-center"
     >
@@ -10,4 +10,4 @@ const Home: React.FC = () => {
   )
 }
 
-export default Home;
+export default GeneratorPage;
