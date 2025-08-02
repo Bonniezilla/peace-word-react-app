@@ -1,17 +1,43 @@
-import React from "react";
+'use client';
 
-const PasswordViewer = async () => {
+import React, { useEffect } from "react";
 
-    const data = await fetch(process.env.PEACEWORD_API + "/users/1/passwords");
-    const passwordsData = await data.json();
-    if (!passwordsData || passwordsData.length === 0) {
+const PasswordViewer = () => {
+    const [passwordsData, setPasswordsData] = React.useState([]);
+    const [error, setError] = React.useState(null);
+
+    useEffect(() => {
+        const fetchPasswords = async () => {
+            try {
+                const response = await fetch(process.env.PEACEWORD_API + "/users/1/passwords");
+                if (!response.ok) {
+                    throw new Error("Failed to fetch passwords");
+                }
+                const data = await response.json();
+                setPasswordsData(data);
+            } catch (error: any) {
+                setError(error.message || "Unknown error");
+            }
+        };
+        fetchPasswords();
+    }, []);
+
+    if (error) {
         return (
-            <div className="w-11/12 p-12 h-full justify-self-center bg-emerald-950/30 flex items-center justify-center">
-                <h1 className="text-white text-2xl">No passwords found.</h1>
+            <div className="w-11/12 p-12 h-full justify-self-center bg-red-500/30 flex items-center justify-center">
+                <h1 className="text-white font-bold text-2xl">Error: {error}</h1>
             </div>
         );
     }
     
+    if(!passwordsData || passwordsData.length === 0) { 
+        return (
+            <div className="w-11/12 p-12 h-full justify-self-center bg-yellow-500/30 flex items-center justify-center">
+                <h1 className="text-white font-bold text-2xl">No passwords found</h1>
+            </div>
+        );
+    };
+
     return (
         <div className="w-11/12 p-12 h-full justify-self-center bg-emerald-950/30 flex items-center justify-center">
             <ul className="flex flex-wrap gap-6">
