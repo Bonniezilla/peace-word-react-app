@@ -1,8 +1,16 @@
 import React from "react";
 
 const PasswordViewer = async () => {
+
     const data = await fetch(process.env.PEACEWORD_API + "/users/1/passwords");
     const passwordsData = await data.json();
+    if (!passwordsData || passwordsData.length === 0) {
+        return (
+            <div className="w-11/12 p-12 h-full justify-self-center bg-emerald-950/30 flex items-center justify-center">
+                <h1 className="text-white text-2xl">No passwords found.</h1>
+            </div>
+        );
+    }
     
     return (
         <div className="w-11/12 p-12 h-full justify-self-center bg-emerald-950/30 flex items-center justify-center">
