@@ -9,7 +9,11 @@ const PasswordViewer = () => {
 
 
     useEffect(() => {
-        fetch(apiURL + "/users/1/passwords")
+        fetch(apiURL + "/users/1/passwords", {
+            headers: {
+                "ngrok-skip-browser-warning": "true",
+            }
+        })
         .then((response) => response.json())
         .then((data) => {
             console.log(data);
