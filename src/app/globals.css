@@ -71,3 +71,7 @@ input:checked + .slider::before {
 
     grid-template-rows: 10% 1fr;
 }
+
+.input-create-password-form {
+    @apply p-2 rounded-md w-full;
+}
