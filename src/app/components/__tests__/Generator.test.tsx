@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 
-import Generator from '../Generator';
+import Generator from '../Generator/PasswordGenerator';
 
 test('testing if new passwords are running', async () => {
     //ARRANGE

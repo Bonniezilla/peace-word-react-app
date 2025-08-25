@@ -1,5 +1,5 @@
 import React from 'react';
-import Generator from '../components/Generator';
+import Generator from '../components/Generator/PasswordGenerator';
 
 const GeneratorPage: React.FC = () => {
   return (
