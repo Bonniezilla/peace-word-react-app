@@ -29,17 +29,16 @@ export function createPasswords(config) {
         const getRandomChar = () => chars[Math.floor(Math.random() * chars.length)];
 
         if (config.size >= 5 && config.size <= 35) {
+            for (let n = 0; n < config.number; n++) {
             let password = '';
             
-            for (let i = 1; i <= config.number; i++) {
-                for (let i = 1; i <= config.size; i++) {
-                    password += getRandomChar();
-                }
-                passwordsArray.push(password);
-                password = '';
+            for (let i = 0; i < config.size; i++) {
+                password += getRandomChar();
             }
+            passwordsArray.push(password);
         }
 
         return passwordsArray;
     }
+}
 

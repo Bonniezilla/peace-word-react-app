@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "classnames": "^2.3.2",
+    "motion": "^12.23.12",
     "next": "^15.4.5",
     "postcss": "8.4.24",
     "react": "18.2.0",

@@ -15,7 +15,9 @@ export function PasswordList({ passwords, onCopy }: PasswordListProps) {
                 <PasswordDisplay
                     key={index}
                     password={password}
-                    onCopy={onCopy} />
+                    onCopy={onCopy} 
+                    index={index} 
+                    />
             ))}
         </div>
     );

@@ -46,7 +46,7 @@ export function ConfigMenu({ onApply, show }: ConfigMenuProps) {
 
     return (
         <div className="flex self-end relative">
-                <div className={`${show ? " block" : "hidden"}`}>
+                <div>
                     <form onSubmit={handleSubmit}
                         className={`config-section`}
                         >

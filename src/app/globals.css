@@ -4,24 +4,19 @@
 
 
 .generator-button {
-    @apply text-white bg-emerald-500 p-4 border-2 h-1/5 whitespace-nowrap flex justify-center
-    border-solid border-white rounded-lg hover:bg-emerald-600 duration-300 max-md:h-3/5 items-center;
+    @apply text-white bg-emerald-500 p-4 border-2 h-1/5 whitespace-nowrap flex justify-center border-solid border-white rounded-lg hover:bg-emerald-600 duration-300 max-md:h-3/5 items-center;
 }
 
 .password-input {
-    @apply text-emerald-500 bg-slate-800 rounded-md
-    border-zinc-500 border-2 text-center h-full w-full animate-appear
-    cursor-pointer hover:text-white duration-500 hover:tracking-widest 
-    max-md:text-sm;
+    @apply flex items-center justify-center text-emerald-500 bg-slate-800 rounded-md border-zinc-500 border-2 text-center h-full w-full cursor-pointer hover:text-white duration-500 hover:tracking-widest max-md:text-sm;
 }
 
 .size-input {
-    @apply bg-transparent appearance-none cursor-pointer w-full h-full outline-none 
-    max-md:w-full flex items-center justify-center max-w-full;
+    @apply bg-transparent appearance-none cursor-pointer w-full h-full outline-none max-md:w-full flex items-center justify-center max-w-full;
 }
 
 
-.size-input::-webkit-slider-runnable-track  {
+.size-input::-webkit-slider-runnable-track {
     @apply bg-emerald-500 h-6 rounded-xl max-sm:h-4 flex items-center justify-center duration-300;
 }
 
@@ -33,24 +28,20 @@
     @apply bg-emerald-500 h-6 rounded-xl max-sm:h-4 flex items-center justify-center duration-300;
 }
 
-.size-input::-webkit-slider-thumb   {
-    @apply appearance-none border-emerald-300 border-2 
-    bg-slate-600 h-6 w-6 max-w-full rounded-full max-md:h-10 max-md:w-10 max-md:-mt-2 hover:h-8 hover:w-8 hover:rounded-t-none hover:-mt-1 max-md:hover:w-12 max-md:hover:h-12 max-md:hover:-mt-3 duration-200;
+.size-input::-webkit-slider-thumb {
+    @apply appearance-none border-emerald-300 border-2 bg-slate-600 h-6 w-6 max-w-full rounded-full max-md:h-10 max-md:w-10 max-md:-mt-2 hover:h-8 hover:w-8 hover:rounded-t-none hover:-mt-1 max-md:hover:w-12 max-md:hover:h-12 max-md:hover:-mt-3 duration-200;
 }
 
 .size-input::-moz-range-thumb {
-    @apply appearance-none border-emerald-300 border-2 
-    bg-slate-600 h-6 w-6 rounded-full max-w-full max-md:h-10 max-md:w-10 max-md:-mt-2 hover:h-8 hover:w-8 hover:rounded-t-none hover:-mt-1 max-md:hover:w-12 max-md:hover:h-12 max-md:hover:-mt-3 duration-200;
+    @apply appearance-none border-emerald-300 border-2 bg-slate-600 h-6 w-6 rounded-full max-w-full max-md:h-10 max-md:w-10 max-md:-mt-2 hover:h-8 hover:w-8 hover:rounded-t-none hover:-mt-1 max-md:hover:w-12 max-md:hover:h-12 max-md:hover:-mt-3 duration-200;
 }
 
 .size-input::-ms-thumb {
-    @apply appearance-none border-emerald-300 border-2 
-    bg-slate-600 h-6 w-6 rounded-full max-md:h-10 max-md:w-10 max-w-full max-md:-mt-2 hover:h-8 hover:w-8 hover:rounded-t-none hover:-mt-1 max-md:hover:w-12 max-md:hover:h-12 max-md:hover:-mt-3 duration-200;
+    @apply appearance-none border-emerald-300 border-2 bg-slate-600 h-6 w-6 rounded-full max-md:h-10 max-md:w-10 max-w-full max-md:-mt-2 hover:h-8 hover:w-8 hover:rounded-t-none hover:-mt-1 max-md:hover:w-12 max-md:hover:h-12 max-md:hover:-mt-3 duration-200;
 }
 
 .slider {
-    @apply absolute cursor-pointer
-    bg-slate-500 top-0 right-0 left-0 bottom-0 rounded-full duration-300;
+    @apply absolute cursor-pointer bg-slate-500 top-0 right-0 left-0 bottom-0 rounded-full duration-300;
 }
 
 .slider::before {
@@ -58,11 +49,11 @@
     @apply absolute bg-white w-2/4 h-full rounded-full duration-300 max-w-full;
 }
 
-input:checked + .slider {
+input:checked+.slider {
     @apply bg-emerald-500;
 }
 
-input:checked + .slider::before {
+input:checked+.slider::before {
     transform: translateX(100%);
 }
 
@@ -78,4 +69,20 @@ input:checked + .slider::before {
 
 .config-section {
     @apply flex flex-col gap-4 bg-slate-800 border-solid border-zinc-500 border-4 rounded-md self-end p-4 absolute right-8 top-8 max-sm:right-2;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translate(0, -0.5rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+}
+
+.animate-fadeIn {
+    animation: fadeIn 0.3s ease-in-out;
 }

@@ -1,7 +1,7 @@
 'use client';
 
 import { ChangeEvent, FormEvent, use, useEffect, useState } from "react";
-import { useOutsideClick } from "../../useOutsideClick";
+import { useOutsideClick } from "./useOutsideClick";
 
 import { createPasswords } from "./passwordUtils";
 import { PasswordList } from "./PasswordList";
@@ -38,11 +38,11 @@ const Generator: React.FC<GeneratorProps> = ({ passwordsNumber }) => {
     // State for config menu visibility
     const [showMenu, setShowMenu] = useState(false);
 
-    const configRef = useOutsideClick((target) => {
-        if (target.id == "config-button" && configRef.current.classList.contains('hidden')) {
-            setShowMenu(true);
-        } else {
+    const menuRef = useOutsideClick((target) => {
+        if(target.id !== "config-button") {
             setShowMenu(false);
+        } else {
+            setShowMenu(prev => !prev);
         }
     });
 
@@ -67,6 +67,10 @@ const Generator: React.FC<GeneratorProps> = ({ passwordsNumber }) => {
         setPasswords(createPasswords(config));
     }, [config]);
 
+    useEffect(() => {
+        console.log(showMenu)
+    }, []);
+
     return (
         <section className="max-sm:w-full max-sm:px-0
         min-h-screen w-5/6 max-w-full flex flex-col items-center justify-center"
@@ -78,7 +82,10 @@ const Generator: React.FC<GeneratorProps> = ({ passwordsNumber }) => {
                             className="w-8 max-w-full hover:animate-spin-one hover:brightness-50 duration-300"
                         />
                     </button>
-                    <div ref={configRef} className={`${showMenu ? " block" : "hidden"}`}>
+                    <div 
+                    ref={menuRef} 
+                    className={`transition-all duration-300 ease-in-out
+                        ${showMenu ? "opacity-100 translate-x-0" : "opacity-0 pointer-events-none translate-x-4 translate-y-[-1rem]"}`}>
                         <ConfigMenu show={showMenu} onApply={handleApply} />
                     </div>
                 </div>
