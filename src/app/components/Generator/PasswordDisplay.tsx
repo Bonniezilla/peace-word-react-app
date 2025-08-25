@@ -13,7 +13,7 @@ export function PasswordDisplay({ password, onCopy, index }: PasswordDisplayProp
     const controls = useAnimationControls();
 
     useEffect(() => {
-        controls.start({ opacity: [0, 1], y: [5, 0] }, { delay: index * 0.1 });
+        controls.start({ opacity: [0, 1], y: [5, 0], x: [-5, 0] }, { delay: index * 0.2 });
     }, [password]);
 
     return (
@@ -26,16 +26,19 @@ export function PasswordDisplay({ password, onCopy, index }: PasswordDisplayProp
             data-testid={1}
             title="Click to copy on clipboard"
             onClick={() => onCopy(password)}
-            >{password.split("").map((char, index) => (
+            >{password.split("").map((char, index) => {
+                const randomDelay = index * 0.03 + Math.random() * 0.1;
+                
+                return (
                 <motion.span
                 key={`${char}-${index}-${password}`}
-                initial={{ opacity: 0.25, x: 0.5, color: "#ffffff"}}
-                animate={{ opacity: 1, x: 0, color: "#10B981" }}
-                transition={{ delay: index * 0.03, duration: 0.3 }}
+                initial={{ opacity: 0, y: -5, color: "#ffffff"}}
+                animate={{ opacity: 1, y: 0, color: "#10B981"}}
+                transition={{ delay: randomDelay, duration: 0.3 }}
                 >
                     {char}
                 </motion.span>
-            ))}
+            )})}
             </div>
         </motion.div>
     )
