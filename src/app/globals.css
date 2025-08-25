@@ -9,7 +9,7 @@
 }
 
 .password-input {
-    @apply text-emerald-500 bg-slate-800 rounded-md 
+    @apply text-emerald-500 bg-slate-800 rounded-md
     border-zinc-500 border-2 text-center h-full w-full animate-appear
     cursor-pointer hover:text-white duration-500 hover:tracking-widest 
     max-md:text-sm;
@@ -17,7 +17,7 @@
 
 .size-input {
     @apply bg-transparent appearance-none cursor-pointer w-full h-full outline-none 
-    max-md:w-full flex items-center justify-center;
+    max-md:w-full flex items-center justify-center max-w-full;
 }
 
 
@@ -35,17 +35,17 @@
 
 .size-input::-webkit-slider-thumb   {
     @apply appearance-none border-emerald-300 border-2 
-    bg-slate-600 h-6 w-6 rounded-full max-md:h-10 max-md:w-10 max-md:-mt-2 hover:h-8 hover:w-8 hover:rounded-t-none hover:-mt-1 max-md:hover:w-12 max-md:hover:h-12 max-md:hover:-mt-3 duration-200;
+    bg-slate-600 h-6 w-6 max-w-full rounded-full max-md:h-10 max-md:w-10 max-md:-mt-2 hover:h-8 hover:w-8 hover:rounded-t-none hover:-mt-1 max-md:hover:w-12 max-md:hover:h-12 max-md:hover:-mt-3 duration-200;
 }
 
 .size-input::-moz-range-thumb {
     @apply appearance-none border-emerald-300 border-2 
-    bg-slate-600 h-6 w-6 rounded-full max-md:h-10 max-md:w-10 max-md:-mt-2 hover:h-8 hover:w-8 hover:rounded-t-none hover:-mt-1 max-md:hover:w-12 max-md:hover:h-12 max-md:hover:-mt-3 duration-200;
+    bg-slate-600 h-6 w-6 rounded-full max-w-full max-md:h-10 max-md:w-10 max-md:-mt-2 hover:h-8 hover:w-8 hover:rounded-t-none hover:-mt-1 max-md:hover:w-12 max-md:hover:h-12 max-md:hover:-mt-3 duration-200;
 }
 
 .size-input::-ms-thumb {
     @apply appearance-none border-emerald-300 border-2 
-    bg-slate-600 h-6 w-6 rounded-full max-md:h-10 max-md:w-10 max-md:-mt-2 hover:h-8 hover:w-8 hover:rounded-t-none hover:-mt-1 max-md:hover:w-12 max-md:hover:h-12 max-md:hover:-mt-3 duration-200;
+    bg-slate-600 h-6 w-6 rounded-full max-md:h-10 max-md:w-10 max-w-full max-md:-mt-2 hover:h-8 hover:w-8 hover:rounded-t-none hover:-mt-1 max-md:hover:w-12 max-md:hover:h-12 max-md:hover:-mt-3 duration-200;
 }
 
 .slider {
@@ -55,7 +55,7 @@
 
 .slider::before {
     content: "";
-    @apply absolute bg-white w-2/4 h-full rounded-full duration-300;
+    @apply absolute bg-white w-2/4 h-full rounded-full duration-300 max-w-full;
 }
 
 input:checked + .slider {
@@ -67,11 +67,15 @@ input:checked + .slider::before {
 }
 
 .home-page {
-    @apply w-screen h-screen justify-center items-center bg-slate-900 grid;
+    @apply w-screen h-screen justify-center items-center bg-slate-900 grid max-w-full;
 
     grid-template-rows: 10% 1fr;
 }
 
-.input-create-password-form {
-    @apply p-2 rounded-md w-full;
+.apply-config-button {
+    @apply flex justify-center items-center text-white p-2 px-4 bg-emerald-500 border-solid border-white border-2 rounded-xl self-start hover:bg-emerald-600 duration-300;
+}
+
+.config-section {
+    @apply flex flex-col gap-4 bg-slate-800 border-solid border-zinc-500 border-4 rounded-md self-end p-4 absolute right-8 top-8 max-sm:right-2;
 }

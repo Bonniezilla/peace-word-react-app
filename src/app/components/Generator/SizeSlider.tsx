@@ -13,7 +13,7 @@ export function SizeSlider({ value, min = 5, max = 35, onChange }: SizeSliderPro
     };
 
     return (
-        <div className="flex flex-col w-full h-full gap-4">
+        <div className="flex flex-col w-full h-full gap-4 max-w-full">
                         <input 
                         className={`size-input
                             ${value == 5 ? "hover:slider-thumb:rounded-full" : ""} 

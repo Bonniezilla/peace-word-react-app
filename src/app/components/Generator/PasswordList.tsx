@@ -9,7 +9,7 @@ interface PasswordListProps {
 
 export function PasswordList({ passwords, onCopy }: PasswordListProps) {
     return (
-        <div className={`max-sm:px-0 max-md:h-full max-sm:p-6 max-md:p-0 grid items-center gap-6 w-full h-3/6
+        <div className={`gap-4 grid items-center w-full h-3/6 flex-1 max-w-full
             ${passwords.length < 2 ? "grid-cols-1" : "md:grid-cols-2 sm:grid-cols-1"}`}>
             {passwords.map((password, index) => (
                 <PasswordDisplay

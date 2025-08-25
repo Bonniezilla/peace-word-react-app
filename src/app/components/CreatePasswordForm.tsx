@@ -47,7 +47,7 @@ const CreatePasswordForm = () => {
         <main className="w-full h-full flex items-center justify-center bg-emerald-950/50 p-12 px-80">
             <div className="h-full w-full bg-emerald-600 p-12 px-96 rounded-2xl flex flex-col items-center justify-center">
                 <h1 className="text-white font-bold text-3xl mb-4 text-center">Create Password</h1>
-                <form className="flex flex-col gap-4 w-full" onSubmit={handleSubmit}>
+                <form className="flex flex-col gap-4 w-full max-w-full" onSubmit={handleSubmit}>
                     <input onChange={handleChange} value={formData.password} name="password" type="text" placeholder="Password" className="input-create-password-form" required/>
                     <input onChange={handleChange} value={formData.category} name="category" type="text" placeholder="Category" className="input-create-password-form"/>
                     <input onChange={handleChange} value={formData.url} name="url" type="text" placeholder="Website URL" className="input-create-password-form" required/>

@@ -22,6 +22,7 @@ interface PasswordConfig {
 }
 
 const Generator: React.FC<GeneratorProps> = ({ passwordsNumber }) => {
+    // State for password configuration
     const [config, setConfig] = useState<PasswordConfig>({
         number: passwordsNumber ? passwordsNumber : 4,
         size: 12,
@@ -31,8 +32,10 @@ const Generator: React.FC<GeneratorProps> = ({ passwordsNumber }) => {
         hasNumbers: true
     });
 
+    // State for generated passwords
     const [passwords, setPasswords] = useState<string[]>([]);
 
+    // State for config menu visibility
     const [showMenu, setShowMenu] = useState(false);
 
     const configRef = useOutsideClick((target) => {
@@ -43,9 +46,9 @@ const Generator: React.FC<GeneratorProps> = ({ passwordsNumber }) => {
         }
     });
 
-    
+
     const handleChange = (newSize) => {
-            setConfig(prevState => ({...prevState, size: newSize}));
+        setConfig(prevState => ({ ...prevState, size: newSize }));
     }
 
     function handleCopy(password: string) {
@@ -59,41 +62,28 @@ const Generator: React.FC<GeneratorProps> = ({ passwordsNumber }) => {
         setConfig({ ...config, ...newConfig });
         setShowMenu(false);
     }
-    
 
     useEffect(() => {
         setPasswords(createPasswords(config));
     }, [config]);
 
-    useEffect(() => {
-        console.log("Show menu: ", showMenu);
-    }, [showMenu]);
-
     return (
-        <section className="max-sm:w-full max-sm:px-0 max-sm:py-4
-        h-full p-12 w-5/6 flex flex-col items-center justify-center
-        gap-4">
-            <span className="font-bold text-center gap-2 flex flex-col justify-center 
-            items-center">
-                <h1 className="text-5xl animate-text-entry text-white
-                "><span className="text-emerald-500">Peace</span> Word</h1>
-                <h2 className="text-white text-3xl font-bold animate-text-entry-invert
-                max-md:hidden">Never use weak <span className="text-emerald-500">passwords </span>again.</h2>
-            </span>
-            <div className="flex self-end relative">
-                <button>
-                    <img src="/config.png" id="config-button"
-                        className="w-8 hover:animate-spin-one hover:brightness-50 duration-300"
-                    />
-                </button>
-                <div ref={configRef} className={`${showMenu ? " block" : "hidden"}`}>
-                    <ConfigMenu show={showMenu} onApply={handleApply} />
+        <section className="max-sm:w-full max-sm:px-0
+        min-h-screen w-5/6 max-w-full flex flex-col items-center justify-center"
+        >
+            <div className="flex flex-1 flex-nowrap max-md:flex-col justify-around items-center max-md:h-2/6 w-10/12 h-8/12 max-w-full max-sm:w-full">
+                <div className="flex self-center relative">
+                    <button>
+                        <img src="/config.png" id="config-button"
+                            className="w-8 max-w-full hover:animate-spin-one hover:brightness-50 duration-300"
+                        />
+                    </button>
+                    <div ref={configRef} className={`${showMenu ? " block" : "hidden"}`}>
+                        <ConfigMenu show={showMenu} onApply={handleApply} />
+                    </div>
                 </div>
-            </div>
-
-            <div className="flex flex-nowrap max-md:flex-col justify-around items-center
-            max-lg:w-full max-lg:px-4 max-md:h-1/6 max-sm:gap-4 w-4/12 h-3/6">
-                <button onClick={() => setPasswords(createPasswords(config))}
+                <button
+                    onClick={() => setPasswords(createPasswords(config))}
                     className="generator-button"
                 >New Password</button>
                 <div className="flex w-6/12 h-12 items-center justify-around">

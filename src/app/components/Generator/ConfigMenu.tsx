@@ -48,8 +48,7 @@ export function ConfigMenu({ onApply, show }: ConfigMenuProps) {
         <div className="flex self-end relative">
                 <div className={`${show ? " block" : "hidden"}`}>
                     <form onSubmit={handleSubmit}
-                        className={`flex flex-col gap-4 bg-slate-800 h-46 border-solid border-zinc-500 border-4
-                        rounded-md self-end p-4 absolute right-8 top-8`}
+                        className={`config-section`}
                         >
                         <div className="flex flex-col">
                             <h1 className="text-white">Letter case: </h1>
@@ -65,7 +64,7 @@ export function ConfigMenu({ onApply, show }: ConfigMenuProps) {
                         </div>
                         <div className="flex flex-col">
                             <h1 className="text-white">Special chars: </h1>
-                            <label className="flex flex-col relative w-12 h-6 text-white">
+                            <label className="flex flex-col relative w-12 h-6 max-w-full text-white">
                                 <input 
                                 type="checkbox" 
                                 id="chars-select" 
@@ -86,9 +85,7 @@ export function ConfigMenu({ onApply, show }: ConfigMenuProps) {
                                 <span className="slider"></span>
                             </label>
                         </div>
-                        <input className="flex justify-center items-center text-white p-2 px-4 
-                    bg-emerald-500 border-solid border-white border-2 rounded-xl self-start
-                    hover:bg-emerald-600 duration-300"
+                        <input className="apply-config-button"
                             type="submit"
                             value="Apply" />
                     </form>
