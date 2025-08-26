@@ -85,7 +85,7 @@ const Generator: React.FC<GeneratorProps> = ({ passwordsNumber }) => {
                     <div 
                     ref={menuRef} 
                     className={`transition-all duration-300 ease-in-out
-                        ${showMenu ? "opacity-100 translate-x-0" : "opacity-0 pointer-events-none translate-x-4 translate-y-[-1rem]"}`}>
+                        ${showMenu ? "opacity-100 translate-x-0 scale-1" : "opacity-0 pointer-events-none translate-x-4 scale-0"}`}>
                         <ConfigMenu show={showMenu} onApply={handleApply} />
                     </div>
                 </div>
