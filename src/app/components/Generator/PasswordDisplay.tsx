@@ -10,18 +10,24 @@ interface PasswordDisplayProps {
 }
 
 export function PasswordDisplay({ password, onCopy, index }: PasswordDisplayProps) {
+    const controls = useAnimationControls();
+
+    const handleHover = () => {
+        controls.start({ scale: 1.02, transition: { duration: 0.2 } });
+    }
+    
     return (
         <div
         className="w-full h-full"
         >
             <motion.div
-            initial={{ opacity: 0.5, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: index ? index * 0.05 : 0, duration: 0.3 }}
+            animate={controls}
             className="password-input"
             data-testid={1}
             title="Click to copy on clipboard"
             onClick={() => onCopy(password)}
+            onHoverStart={handleHover}
+            onHoverEnd={() => controls.start({ scale: 1, transition: { duration: 0.2 } })}
             >{password.split("").map((char, index) => {
                 const randomDelay = index * 0.03 + Math.random() * 0.1;
                 
