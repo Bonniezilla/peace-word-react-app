@@ -10,18 +10,14 @@ interface PasswordDisplayProps {
 }
 
 export function PasswordDisplay({ password, onCopy, index }: PasswordDisplayProps) {
-    const controls = useAnimationControls();
-
-    useEffect(() => {
-        controls.start({ opacity: [0, 1], y: [5, 0], x: [-5, 0] }, { delay: index * 0.2 });
-    }, [password]);
-
     return (
-        <motion.div 
+        <div
         className="w-full h-full"
-        animate={ controls }
         >
-            <div
+            <motion.div
+            initial={{ opacity: 0.5, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: index ? index * 0.05 : 0, duration: 0.3 }}
             className="password-input"
             data-testid={1}
             title="Click to copy on clipboard"
@@ -39,7 +35,7 @@ export function PasswordDisplay({ password, onCopy, index }: PasswordDisplayProp
                     {char}
                 </motion.span>
             )})}
-            </div>
-        </motion.div>
+            </motion.div>
+        </div>
     )
 }
